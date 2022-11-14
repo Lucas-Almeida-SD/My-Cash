@@ -6,13 +6,18 @@
   "scripts": {
     "start": "npx tsc && node ./dist",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
+    "db:reset": "npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create",
     "dev": "ts-node-dev ./src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "pg": "^8.8.0",
+    "postgres": "^3.3.1",
+    "sequelize": "^6.25.5"
   },
   "devDependencies": {
     "@types/express": "^4.17.14",
@@ -26,6 +31,8 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.0.1",
+    "sequelize-cli": "^6.5.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^4.8.4"
   }
 }
