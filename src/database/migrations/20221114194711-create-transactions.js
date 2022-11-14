@@ -12,6 +12,7 @@ module.exports = {
       debitedAccountId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'debited_account_id',
         references: {
           model: 'Accounts',
           key: 'id',
@@ -22,6 +23,7 @@ module.exports = {
       creditedAccountId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'credited_account_id',
         references: {
           model: 'Accounts',
           key: 'id',
@@ -36,6 +38,7 @@ module.exports = {
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
+        field: 'created_at',
       },
     });
   },
