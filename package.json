@@ -7,21 +7,26 @@
     "start": "npx tsc && node ./dist",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "db:reset": "npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "dev": "ts-node-dev ./src"
+    "dev": "ts-node-dev ./src/api/server.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "http-status-codes": "^2.2.0",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
     "postgres": "^3.3.1",
     "sequelize": "^6.25.5"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.8.3",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
