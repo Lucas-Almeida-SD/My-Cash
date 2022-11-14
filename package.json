@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx tsc && node ./dist",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
-    "db:reset": "npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create",
+    "db:reset": "npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "dev": "ts-node-dev ./src"
   },
   "keywords": [],
