@@ -3,10 +3,10 @@ module.exports = {
   async up(queryInterface, _Sequelize) {
     await queryInterface.bulkInsert('Transactions', [
       {
-        debitedAccountId: 1,
-        creditedAccountId: 2,
+        debited_account_id: 1,
+        credited_account_id: 2,
         value: 20,
-        createdAt: new Date('2022-10-10'),
+        created_at: new Date('2022-10-10'),
       },
     ]);
   },
