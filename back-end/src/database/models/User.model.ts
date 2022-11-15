@@ -1,6 +1,6 @@
 import { Transaction } from 'sequelize';
 import {
-  IUserModel, IUser, IUserRequest, IUserCreate,
+  IUserModel, IUser, IUserRequest, IUserCreate, IUserWithoutPassword,
 } from '../../interfaces/IUser.interface';
 import Users from './entities/Users';
 
@@ -27,5 +27,14 @@ export default class UserModel implements IUserModel {
     });
 
     return createdUser;
+  }
+
+  public async getByUsername(username: string): Promise<IUserWithoutPassword | null> {
+    const user = await this.entity.findOne({
+      where: { username },
+      attributes: { exclude: ['password'] },
+    });
+
+    return user;
   }
 }
