@@ -10,4 +10,10 @@ export default class AccountModel implements IAccountModel {
 
     return account;
   }
+
+  public async getById(id: number): Promise<IAccount | null> {
+    const account = await this.entity.findByPk(id);
+
+    return account;
+  }
 }
