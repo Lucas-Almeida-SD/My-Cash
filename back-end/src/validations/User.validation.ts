@@ -41,4 +41,8 @@ export default class UserValidation {
       throwMyError(StatusCodes.BAD_REQUEST, errorMessage);
     }
   }
+
+  static notFoundUserValidate(user: object | null) {
+    if (!user) throwMyError(StatusCodes.NOT_FOUND, 'Usuário não encontrado');
+  }
 }
