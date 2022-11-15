@@ -10,14 +10,20 @@ export interface IUserCreate extends IUserRequest {
   accountId: number;
 }
 
-export interface IUser extends IUserRequest {
+export interface IUserWithoutPassword {
   id: number;
+  username: string;
   accountId: number;
 }
 
+export interface IUser extends IUserWithoutPassword {
+  password: string;
+}
+
 export interface IUserModel {
-  login(userLogin: IUserRequest): Promise<IUser | null>
-  create(newUser: IUserCreate, transaction: Transaction): Promise<IUser>
+  login(userLogin: IUserRequest): Promise<IUser | null>;
+  create(newUser: IUserCreate, transaction: Transaction): Promise<IUser>;
+  getByUsername(username: string): Promise<IUserWithoutPassword | null>;
 }
 
 export interface IUserService {
