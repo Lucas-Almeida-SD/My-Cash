@@ -1,5 +1,6 @@
 import { Model, INTEGER, STRING } from 'sequelize';
 import db from '../..';
+import Accounts from './Accounts';
 
 class Users extends Model {
   id!: number;
@@ -9,6 +10,11 @@ class Users extends Model {
   password!: string;
 
   accountId!: number;
+
+  account!: {
+    id: number,
+    balance: number
+  };
 }
 
 Users.init(
@@ -49,5 +55,9 @@ Users.init(
     tableName: 'Users',
   },
 );
+
+Users.belongsTo(Accounts, {
+  as: 'account', foreignKey: 'accountId',
+});
 
 export default Users;
