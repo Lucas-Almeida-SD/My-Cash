@@ -9,6 +9,7 @@ api.use(cors());
 
 api.use(routes.usersRouter);
 api.use(routes.accountRouter);
+api.use(routes.transactiosRouter);
 
 api.use(errorMiddleware);
 
