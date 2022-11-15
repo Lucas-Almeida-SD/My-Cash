@@ -13,17 +13,36 @@ export interface ITransactionCreate {
   value: number;
 }
 
+export interface ITransaction extends ITransactionCreate {
+  id: number;
+  createdAt: Date;
+}
+
+export interface ITransactionFilterOptions {
+  createdAt?: Date | undefined;
+  cashType?: 'in' | 'out' | undefined;
+}
+
 export interface ITransactionModel {
-  create(newTransaction: ITransactionCreate, transactionSequelize: Transaction): Promise<void>
+  create(newTransaction: ITransactionCreate, transactionSequelize: Transaction): Promise<void>;
+  getMyTransactions(
+    accountId: number,
+    filterOptions: ITransactionFilterOptions
+  ): Promise<ITransaction[] | []>;
 }
 
 export interface ITransactionService {
   create(
     cashOutUser: IUserWithoutPassword,
     newTransaction: ITransactionCreateRequest
-  ): Promise<void>
+  ): Promise<void>;
+  getMyTransactions(
+    accountId: number,
+    filterOptions: ITransactionFilterOptions
+  ): Promise<ITransaction[] | []>;
 }
 
 export interface ITransactionController {
-  create(req: Request, res: Response): Promise<void>
+  create(req: Request, res: Response): Promise<void>;
+  getMyTransactions(req: Request, res: Response): Promise<void>;
 }
