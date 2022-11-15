@@ -1,6 +1,11 @@
 import { StatusCodes } from 'http-status-codes';
 import {
-  ITransactionCreate, ITransactionCreateRequest, ITransactionModel, ITransactionService,
+  ITransaction,
+  ITransactionCreate,
+  ITransactionCreateRequest,
+  ITransactionModel,
+  ITransactionService,
+  ITransactionFilterOptions,
 } from '../interfaces/ITransaction.interface';
 import Sequelize from '../database';
 import TransactionValidation from '../validations/Transaction.validation';
@@ -53,5 +58,16 @@ export default class TransactionService implements ITransactionService {
       await t.rollback();
       throwMyError(StatusCodes.INTERNAL_SERVER_ERROR, (err as Error).message);
     }
+  }
+
+  public async getMyTransactions(
+    accountId: number,
+    filterOptions: ITransactionFilterOptions,
+  ): Promise<[] | ITransaction[]> {
+    TransactionValidation.getTransactionsFiltersValidate(filterOptions);
+
+    const transactions = await this.model.getMyTransactions(accountId, filterOptions);
+
+    return transactions;
   }
 }
