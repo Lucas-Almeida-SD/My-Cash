@@ -9,6 +9,7 @@ export interface IAccount {
 export interface IAccountModel {
   create(transaction: Transaction): Promise<IAccount>;
   getById(id: number): Promise<IAccount | null>;
+  update(account: IAccount, transaction: Transaction): Promise<void>;
 }
 
 export interface IAccountService {
