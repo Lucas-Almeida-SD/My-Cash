@@ -3,7 +3,7 @@ import UserModel from '../database/models/User.model';
 import generateToken from '../helpers/generateToken';
 import throwMyError from '../helpers/throwMyError';
 import {
-  IUser, IUserRequest, IUserService,
+  IUser, IUserRelationWithAccount, IUserRequest, IUserService, IUserWithoutPassword,
 } from '../interfaces/IUser.interface';
 import UserValidation from '../validations/User.validation';
 import sequelize from '../database';
@@ -50,5 +50,13 @@ export default class UserService implements IUserService {
     }
 
     return user as IUser;
+  }
+
+  public async getByUsername(user: IUserWithoutPassword): Promise<IUserRelationWithAccount> {
+    const getUser = await this.model.getByUsername(user.username);
+
+    UserValidation.notFoundUserValidate(getUser);
+
+    return getUser as IUserRelationWithAccount;
   }
 }
