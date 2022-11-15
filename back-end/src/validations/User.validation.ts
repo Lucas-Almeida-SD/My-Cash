@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { z } from 'zod';
+import bcrypt from 'bcrypt';
 import throwMyError from '../helpers/throwMyError';
 
 export default class UserValidation {
@@ -17,6 +18,12 @@ export default class UserValidation {
 
       throwMyError(StatusCodes.BAD_REQUEST, errorMessage);
     }
+  }
+
+  static passwordValidate(password: string, hashPassword: string) {
+    const validation = bcrypt.compareSync(password, hashPassword);
+
+    if (!validation) throwMyError(StatusCodes.UNAUTHORIZED, 'Senha incorreta');
   }
 
   static createValidate(newUser: unknown) {
