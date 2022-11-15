@@ -20,12 +20,12 @@ export default class UserModel implements IUserModel {
   }
 
   public async create(newUser: IUserCreate, transaction: Transaction): Promise<IUser> {
-    const user = await this.entity.create({
+    const createdUser = await this.entity.create({
       ...newUser,
     }, {
       transaction,
     });
 
-    return user;
+    return createdUser;
   }
 }
