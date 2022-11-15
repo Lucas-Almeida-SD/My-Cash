@@ -21,8 +21,8 @@ export interface IUserModel {
 }
 
 export interface IUserService {
-  login(userLogin: unknown): Promise<string>
-  create(newUser: unknown): Promise<IUser>
+  login(userLogin: IUserRequest): Promise<string>
+  create(newUser: IUserRequest): Promise<IUser>
 }
 
 export interface IUserController {

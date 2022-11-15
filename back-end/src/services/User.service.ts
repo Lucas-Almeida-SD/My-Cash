@@ -16,31 +16,31 @@ export default class UserService implements IUserService {
     private accountModel: AccountModel = new AccountModel(),
   ) {}
 
-  public async login(userLogin: unknown): Promise<string> {
+  public async login(userLogin: IUserRequest): Promise<string> {
     UserValidation.loginValidate(userLogin);
 
-    const user = await this.model.login(userLogin as IUserRequest);
+    const user = await this.model.login(userLogin);
 
     if (!user) throwMyError(StatusCodes.NOT_FOUND, 'Usuário não encontrado');
 
-    UserValidation.passwordValidate((userLogin as IUserRequest).password, (user as IUser).password);
+    UserValidation.passwordValidate((userLogin).password, (user as IUser).password);
 
     const token = generateToken(user as IUser);
 
     return token;
   }
 
-  public async create(newUser: unknown): Promise<IUser> {
+  public async create(newUser: IUserRequest): Promise<IUser> {
     UserValidation.createValidate(newUser);
 
-    let user = await this.model.login(newUser as IUserRequest);
+    let user = await this.model.login(newUser);
     if (user) throwMyError(StatusCodes.CONFLICT, 'Usuário já existe');
 
     const t = await sequelize.transaction();
 
     try {
       const account = await this.accountModel.create(t);
-      const createNewUser = { ...newUser as IUserRequest, accountId: account.id };
+      const createNewUser = { ...newUser, accountId: account.id };
       const hashPassword = generateHashPassword(createNewUser.password);
       user = await this.model.create({ ...createNewUser, password: hashPassword }, t);
       await t.commit();
