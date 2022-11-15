@@ -19,6 +19,7 @@ Accounts.init(
     balance: {
       type: INTEGER,
       allowNull: false,
+      defaultValue: 100,
     },
   },
   {
