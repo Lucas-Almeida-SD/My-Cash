@@ -8,6 +8,7 @@ api.use(express.json());
 api.use(cors());
 
 api.use(routes.usersRouter);
+api.use(routes.accountRouter);
 
 api.use(errorMiddleware);
 
