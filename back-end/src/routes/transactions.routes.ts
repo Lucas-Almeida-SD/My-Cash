@@ -11,6 +11,16 @@ const transactionModel = new TransactionModel();
 const transactionService = new TransactionService(transactionModel);
 const transactionController = new TransactionController(transactionService);
 
-transactionsRouter.post('/transactions', authentication, transactionController.create);
+transactionsRouter.post(
+  '/transactions',
+  authentication,
+  transactionController.create,
+);
+
+transactionsRouter.get(
+  '/transactions/me',
+  authentication,
+  transactionController.getMyTransactions,
+);
 
 export default transactionsRouter;
