@@ -34,9 +34,11 @@ export interface IUserModel {
 export interface IUserService {
   login(userLogin: IUserRequest): Promise<string>
   create(newUser: IUserRequest): Promise<IUser>
+  getByUsername(user: IUserWithoutPassword): Promise<IUserRelationWithAccount>;
 }
 
 export interface IUserController {
   login(req: Request, res: Response): Promise<void>
   create(req: Request, res: Response): Promise<void>
+  getByUsername(req: Request, res: Response): Promise<void>;
 }
