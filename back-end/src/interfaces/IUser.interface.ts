@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Transaction } from 'sequelize';
+import { IAccount } from './IAccount.interface';
 
 export interface IUserRequest {
   username: string;
@@ -16,6 +17,10 @@ export interface IUserWithoutPassword {
   accountId: number;
 }
 
+export interface IUserRelationWithAccount extends IUserWithoutPassword {
+  account: IAccount
+}
+
 export interface IUser extends IUserWithoutPassword {
   password: string;
 }
@@ -23,7 +28,7 @@ export interface IUser extends IUserWithoutPassword {
 export interface IUserModel {
   login(userLogin: IUserRequest): Promise<IUser | null>;
   create(newUser: IUserCreate, transaction: Transaction): Promise<IUser>;
-  getByUsername(username: string): Promise<IUserWithoutPassword | null>;
+  getByUsername(username: string): Promise<IUserRelationWithAccount | null>;
 }
 
 export interface IUserService {
