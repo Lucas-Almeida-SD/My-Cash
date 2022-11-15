@@ -1,11 +1,15 @@
 import { Transaction } from 'sequelize';
 import {
-  IUserModel, IUser, IUserRequest, IUserCreate, IUserWithoutPassword,
+  IUserModel, IUser, IUserRequest, IUserCreate, IUserRelationWithAccount,
 } from '../../interfaces/IUser.interface';
+import Accounts from './entities/Accounts';
 import Users from './entities/Users';
 
 export default class UserModel implements IUserModel {
-  constructor(private entity = Users) {}
+  constructor(
+    private entity: typeof Users = Users,
+    private accountEntity: typeof Accounts = Accounts,
+  ) {}
 
   public async login(userLogin: IUserRequest): Promise<IUser | null> {
     const { username } = userLogin;
@@ -29,10 +33,11 @@ export default class UserModel implements IUserModel {
     return createdUser;
   }
 
-  public async getByUsername(username: string): Promise<IUserWithoutPassword | null> {
+  public async getByUsername(username: string): Promise<IUserRelationWithAccount | null> {
     const user = await this.entity.findOne({
       where: { username },
       attributes: { exclude: ['password'] },
+      include: { model: this.accountEntity, as: 'account' },
     });
 
     return user;
