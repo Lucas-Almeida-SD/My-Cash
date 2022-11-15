@@ -18,4 +18,20 @@ export default class UserValidation {
       throwMyError(StatusCodes.BAD_REQUEST, errorMessage);
     }
   }
+
+  static createValidate(newUser: unknown) {
+    const newUserSchema = z.object({
+      username: z.string().min(3),
+      password: z.string().min(8).regex(/(?=.*\d)(?=.*[A-Z])/),
+    });
+
+    const validation = newUserSchema.safeParse(newUser);
+
+    if (!validation.success) {
+      const { path } = validation.error.issues[0];
+      const errorMessage = `Campo "${path}" é inválido`;
+
+      throwMyError(StatusCodes.BAD_REQUEST, errorMessage);
+    }
+  }
 }
