@@ -8,6 +8,7 @@ import {
 import UserValidation from '../validations/User.validation';
 import sequelize from '../database';
 import AccountModel from '../database/models/Account.model';
+import generateHashPassword from '../helpers/generateHashPassword';
 
 export default class UserService implements IUserService {
   constructor(
@@ -38,7 +39,8 @@ export default class UserService implements IUserService {
     try {
       const account = await this.accountModel.create(t);
       const createNewUser = { ...newUser as IUserRequest, accountId: account.id };
-      user = await this.model.create(createNewUser, t);
+      const hashPassword = generateHashPassword(createNewUser.password);
+      user = await this.model.create({ ...createNewUser, password: hashPassword }, t);
       await t.commit();
     } catch (err) {
       await t.rollback();
