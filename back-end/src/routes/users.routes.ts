@@ -10,6 +10,7 @@ const userModel = new UserModel();
 const userService = new UserService(userModel);
 const userController = new UserController(userService);
 
+usersRouter.post('/users', userController.create);
 usersRouter.post('/users/login', userController.login);
 
 export default usersRouter;
