@@ -16,4 +16,11 @@ export default class AccountModel implements IAccountModel {
 
     return account;
   }
+
+  public async update(id: number, balance: number, transaction?: Transaction): Promise<void> {
+    await this.entity.update(
+      { balance },
+      { where: { id }, transaction },
+    );
+  }
 }
