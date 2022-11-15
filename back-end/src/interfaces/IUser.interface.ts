@@ -1,23 +1,31 @@
 import { Request, Response } from 'express';
+import { Transaction } from 'sequelize';
 
-export interface IUserLoginRequest {
+export interface IUserRequest {
   username: string;
   password: string;
 }
 
-export interface IUser extends IUserLoginRequest {
+export interface IUserCreate extends IUserRequest {
+  accountId: number;
+}
+
+export interface IUser extends IUserRequest {
   id: number;
   accountId: number;
 }
 
 export interface IUserModel {
-  login(userLogin: IUserLoginRequest): Promise<IUser | null>
+  login(userLogin: IUserRequest): Promise<IUser | null>
+  create(newUser: IUserCreate, transaction: Transaction): Promise<IUser>
 }
 
 export interface IUserService {
   login(userLogin: unknown): Promise<string>
+  create(newUser: unknown): Promise<IUser>
 }
 
 export interface IUserController {
   login(req: Request, res: Response): Promise<void>
+  create(req: Request, res: Response): Promise<void>
 }
