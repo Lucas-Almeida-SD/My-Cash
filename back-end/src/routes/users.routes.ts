@@ -2,6 +2,7 @@ import { Router } from 'express';
 import UserController from '../controllers/User.controller';
 import UserModel from '../database/models/User.model';
 import UserService from '../services/User.service';
+import 'express-async-errors';
 
 const usersRouter = Router();
 
