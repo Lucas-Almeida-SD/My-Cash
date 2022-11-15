@@ -1,5 +1,5 @@
 import {
-  Model, INTEGER, FLOAT, DATE,
+  Model, INTEGER, FLOAT, DATE, NOW,
 } from 'sequelize';
 import db from '../..';
 
@@ -54,7 +54,7 @@ Transactions.init(
       type: DATE,
       allowNull: false,
       field: 'created_at',
-      defaultValue: new Date(),
+      defaultValue: NOW,
     },
   },
   {
