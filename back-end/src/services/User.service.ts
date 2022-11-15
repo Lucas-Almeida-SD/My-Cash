@@ -23,6 +23,8 @@ export default class UserService implements IUserService {
 
     if (!user) throwMyError(StatusCodes.NOT_FOUND, 'Usuário não encontrado');
 
+    UserValidation.passwordValidate((userLogin as IUserRequest).password, (user as IUser).password);
+
     const token = generateToken(user as IUser);
 
     return token;
