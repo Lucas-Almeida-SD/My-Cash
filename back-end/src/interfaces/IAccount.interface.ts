@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import { Transaction } from 'sequelize';
 
 export interface IAccount {
@@ -7,4 +8,13 @@ export interface IAccount {
 
 export interface IAccountModel {
   create(transaction: Transaction): Promise<IAccount>;
+  getById(id: number): Promise<IAccount | null>;
+}
+
+export interface IAccountService {
+  getById(id: number): Promise<IAccount>;
+}
+
+export interface IAccountController {
+  getById(req: Request, res: Response): Promise<void>;
 }
