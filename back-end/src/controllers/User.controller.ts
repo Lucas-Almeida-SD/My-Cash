@@ -11,4 +11,10 @@ export default class UserController implements IUserController {
 
     res.status(StatusCodes.OK).json({ token });
   };
+
+  public create = async (req: Request, res: Response): Promise<void> => {
+    const createdUser = await this.service.create(req.body);
+
+    res.status(StatusCodes.CREATED).json(createdUser);
+  };
 }
