@@ -11,4 +11,12 @@ export default class TransactionController implements ITransactionController {
 
     res.status(StatusCodes.CREATED).end();
   };
+
+  public getMyTransactions = async (req: Request, res: Response): Promise<void> => {
+    const { accountId } = req.user as IUserWithoutPassword;
+
+    const transactions = await this.service.getMyTransactions(accountId, req.query);
+
+    res.status(StatusCodes.OK).json(transactions);
+  };
 }
