@@ -12,9 +12,11 @@ interface User {
 
 interface ContextProps {
   user: User;
-  setUser: React.Dispatch<React.SetStateAction<User>>
+  setUser: React.Dispatch<React.SetStateAction<User>>;
   token: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>
+  setToken: React.Dispatch<React.SetStateAction<string>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const MyContext = createContext({} as ContextProps);
@@ -26,10 +28,11 @@ interface ContextProviderProps {
 export function MyContextProvider({ children }: ContextProviderProps) {
   const [user, setUser] = useState({} as User);
   const [token, setToken] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const value = useMemo(() => ({
-    user, setUser, token, setToken,
-  }), [user, token]);
+    user, setUser, token, setToken, isLoading, setIsLoading,
+  }), [user, token, isLoading]);
 
   return (
     <MyContext.Provider value={value}>
