@@ -20,10 +20,10 @@ interface ContextProps {
 export const MyContext = createContext({} as ContextProps);
 
 interface ContextProviderProps {
-  child: React.ReactElement;
+  children: React.ReactNode;
 }
 
-export function MyContextProvider({ child }: ContextProviderProps) {
+export function MyContextProvider({ children }: ContextProviderProps) {
   const [user, setUser] = useState({} as User);
   const [token, setToken] = useState('');
 
@@ -33,7 +33,7 @@ export function MyContextProvider({ child }: ContextProviderProps) {
 
   return (
     <MyContext.Provider value={value}>
-      {child}
+      {children}
     </MyContext.Provider>
   );
 }
