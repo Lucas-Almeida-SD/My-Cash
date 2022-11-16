@@ -23,14 +23,12 @@ export default class UserModel implements IUserModel {
     return user;
   }
 
-  public async create(newUser: IUserCreate, transaction: Transaction): Promise<IUser> {
-    const createdUser = await this.entity.create({
+  public async create(newUser: IUserCreate, transaction: Transaction): Promise<void> {
+    await this.entity.create({
       ...newUser,
     }, {
       transaction,
     });
-
-    return createdUser;
   }
 
   public async getByUsername(username: string): Promise<IUserRelationWithAccount | null> {

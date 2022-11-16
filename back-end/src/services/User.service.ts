@@ -30,10 +30,10 @@ export default class UserService implements IUserService {
     return token;
   }
 
-  public async create(newUser: IUserRequest): Promise<IUser> {
+  public async create(newUser: IUserRequest): Promise<void> {
     UserValidation.createValidate(newUser);
 
-    let user = await this.model.login(newUser);
+    const user = await this.model.login(newUser);
     if (user) throwMyError(StatusCodes.CONFLICT, 'Usuário já existe');
 
     const t = await sequelize.transaction();
@@ -42,14 +42,12 @@ export default class UserService implements IUserService {
       const account = await this.accountModel.create(t);
       const createNewUser = { ...newUser, accountId: account.id };
       const hashPassword = generateHashPassword(createNewUser.password);
-      user = await this.model.create({ ...createNewUser, password: hashPassword }, t);
+      await this.model.create({ ...createNewUser, password: hashPassword }, t);
       await t.commit();
     } catch (err) {
       await t.rollback();
       throwMyError(StatusCodes.INTERNAL_SERVER_ERROR, (err as Error).message);
     }
-
-    return user as IUser;
   }
 
   public async getByUsername(user: IUserWithoutPassword): Promise<IUserRelationWithAccount> {

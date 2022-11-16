@@ -27,13 +27,13 @@ export interface IUser extends IUserWithoutPassword {
 
 export interface IUserModel {
   login(userLogin: IUserRequest): Promise<IUser | null>;
-  create(newUser: IUserCreate, transaction: Transaction): Promise<IUser>;
+  create(newUser: IUserCreate, transaction: Transaction): Promise<void>;
   getByUsername(username: string): Promise<IUserRelationWithAccount | null>;
 }
 
 export interface IUserService {
   login(userLogin: IUserRequest): Promise<string>
-  create(newUser: IUserRequest): Promise<IUser>
+  create(newUser: IUserRequest): Promise<void>
   getByUsername(user: IUserWithoutPassword): Promise<IUserRelationWithAccount>;
 }
 
