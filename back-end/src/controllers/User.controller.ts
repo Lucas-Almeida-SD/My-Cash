@@ -13,9 +13,9 @@ export default class UserController implements IUserController {
   };
 
   public create = async (req: Request, res: Response): Promise<void> => {
-    const createdUser = await this.service.create(req.body);
+    await this.service.create(req.body);
 
-    res.status(StatusCodes.CREATED).json(createdUser);
+    res.status(StatusCodes.CREATED).end();
   };
 
   public getByUsername = async (req: Request, res: Response): Promise<void> => {
