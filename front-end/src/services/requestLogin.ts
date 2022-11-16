@@ -1,6 +1,12 @@
+import { ErrorMessage } from '../@types/ErrorMessage';
+import { ResponseLogin } from '../@types/Response';
+
 const { REACT_APP_BASE_URL } = process.env;
 
-export default async function requestLogin(username: string, password: string) {
+export default async function requestLogin(
+  username: string,
+  password: string,
+): Promise<ResponseLogin> {
   try {
     const response = await fetch(
       `${REACT_APP_BASE_URL}/users/login`,
@@ -13,10 +19,10 @@ export default async function requestLogin(username: string, password: string) {
       },
     );
 
-    const data = await response.json();
+    const data: ResponseLogin = await response.json();
 
     return data;
   } catch (err) {
-    return { message: (err as Error).message };
+    return { message: (err as Error).message } as ErrorMessage;
   }
 }

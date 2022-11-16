@@ -1,6 +1,9 @@
+import { ErrorMessage } from '../@types/ErrorMessage';
+import { ResponseGetUser } from '../@types/Response';
+
 const { REACT_APP_BASE_URL } = process.env;
 
-export default async function requestGetUser(token: string) {
+export default async function requestGetUser(token: string): Promise<ResponseGetUser> {
   try {
     const response = await fetch(
       `${REACT_APP_BASE_URL}/users/me`,
@@ -11,10 +14,10 @@ export default async function requestGetUser(token: string) {
       },
     );
 
-    const data = await response.json();
+    const data: ResponseGetUser = await response.json();
 
     return data;
   } catch (err) {
-    return { message: (err as Error).message };
+    return { message: (err as Error).message } as ErrorMessage;
   }
 }
