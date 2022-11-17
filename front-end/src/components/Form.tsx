@@ -1,5 +1,6 @@
 import React from 'react';
 import useMyContext from '../hooks/useMyContext';
+import Input from './Input';
 
 interface Props {
   username: string;
@@ -8,6 +9,11 @@ interface Props {
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   handleSubmit: React.FormEventHandler;
   submitBtnText: string;
+  isValidUsername?: boolean;
+  isValidPassword?: boolean;
+  isValidForm?: boolean;
+  inputUsernameErrorMessage?: string;
+  inputPasswordErrorMessage?: string;
 }
 
 export default function Form(props: Props) {
@@ -18,22 +24,46 @@ export default function Form(props: Props) {
     setPassword,
     handleSubmit,
     submitBtnText,
+    isValidUsername,
+    isValidPassword,
+    isValidForm,
+    inputUsernameErrorMessage,
+    inputPasswordErrorMessage,
   } = props;
   const { isLoading } = useMyContext();
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <Input
+        id="username"
         type="text"
         value={username}
-        onChange={({ target }) => setUsername(target.value)}
+        setValue={setUsername}
+        isValidInput={isValidUsername}
+        inputErrorMessage={inputUsernameErrorMessage}
       />
-      <input
+      <Input
+        id="password"
         type="password"
         value={password}
-        onChange={({ target }) => setPassword(target.value)}
+        setValue={setPassword}
+        isValidInput={isValidPassword}
+        inputErrorMessage={inputPasswordErrorMessage}
       />
-      <button type="submit" disabled={isLoading}>{submitBtnText}</button>
+      <button
+        type="submit"
+        disabled={isLoading || !isValidForm}
+      >
+        {submitBtnText}
+      </button>
     </form>
   );
 }
+
+Form.defaultProps = {
+  isValidUsername: true,
+  isValidPassword: true,
+  isValidForm: true,
+  inputUsernameErrorMessage: '',
+  inputPasswordErrorMessage: '',
+};

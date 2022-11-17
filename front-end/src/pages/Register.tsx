@@ -5,17 +5,25 @@ import loginImg from '../assets/imgs/login.gif';
 import Form from '../components/Form';
 import { MyContext } from '../contexts/MyContext';
 import errorNotify from '../helpers/errorNotify';
+import inputErrorMessage from '../helpers/inputErrorMessage';
 import routes from '../helpers/routes';
 import successNotify from '../helpers/successNotify';
 import requestCreateUser from '../services/requestCreateUser';
+import * as formValidations from '../validations/formValidations';
 
 export default function Register() {
   const {
     setIsLoading,
   } = useContext(MyContext);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  const isValidForm = [
+    formValidations.usernameValidate(username),
+    formValidations.passwordValidate(password),
+  ].every((element) => element);
 
   const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
@@ -46,6 +54,11 @@ export default function Register() {
         setPassword={setPassword}
         handleSubmit={handleSubmit}
         submitBtnText="Cadastrar"
+        isValidUsername={formValidations.usernameValidate(username)}
+        isValidPassword={formValidations.passwordValidate(password)}
+        isValidForm={isValidForm}
+        inputUsernameErrorMessage={inputErrorMessage.username}
+        inputPasswordErrorMessage={inputErrorMessage.password}
       />
     </main>
   );
