@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ErrorMessage } from '../@types/ErrorMessage';
 import { User, UserToken } from '../@types/User';
 import loginImg from '../assets/imgs/login.gif';
+import Form from '../components/Form';
 import { MyContext } from '../contexts/MyContext';
 import errorNotify from '../helpers/errorNotify';
 import routes from '../helpers/routes';
@@ -12,7 +13,7 @@ import requestLogin from '../services/requestLogin';
 
 export default function Login() {
   const {
-    isLoading, setIsLoading, setToken, setUser,
+    setIsLoading, setToken, setUser,
   } = useContext(MyContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -49,19 +50,14 @@ export default function Login() {
       <div>
         <img src={loginImg} alt="Usuário fazendo login" />
       </div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={username}
-          onChange={({ target }) => setUsername(target.value)}
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
-        <button type="submit" disabled={isLoading}>Entrar</button>
-      </form>
+      <Form
+        username={username}
+        setUsername={setUsername}
+        password={password}
+        setPassword={setPassword}
+        handleSubmit={handleSubmit}
+        submitBtnText="Entrar"
+      />
     </main>
   );
 }
