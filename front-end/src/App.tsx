@@ -6,6 +6,7 @@ import routes from './helpers/routes';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import MyAccount from './pages/MyAccount';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.login} element={<Login />} />
         <Route path={routes.register} element={<Register />} />
+        <Route path={routes.myAccount} element={<MyAccount />} />
       </Routes>
       <Toaster />
     </div>
