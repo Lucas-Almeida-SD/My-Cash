@@ -5,6 +5,7 @@ import Header from './components/Header';
 import routes from './helpers/routes';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.login} element={<Login />} />
+        <Route path={routes.register} element={<Register />} />
       </Routes>
       <Toaster />
     </div>
