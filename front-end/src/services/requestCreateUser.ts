@@ -1,12 +1,12 @@
 import { ErrorMessage } from '../@types/ErrorMessage';
-import { ResponseCreateUser } from '../@types/Response';
+import { ResponseCreate } from '../@types/Response';
 
 const { REACT_APP_BASE_URL } = process.env;
 
 export default async function requestCreateUser(
   username: string,
   password: string,
-): Promise<ResponseCreateUser> {
+): Promise<ResponseCreate> {
   try {
     const response = await fetch(
       `${REACT_APP_BASE_URL}/users`,
