@@ -58,6 +58,7 @@ export default function Form(props: Props) {
         inputErrorMessage={inputPasswordErrorMessage}
       />
       <button
+        className="form-btn"
         type="submit"
         disabled={isLoading || !isValidForm}
       >
