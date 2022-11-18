@@ -5,6 +5,7 @@ import TransactionTable from '../components/TransactionTable';
 import errorNotify from '../helpers/errorNotify';
 import useMyContext from '../hooks/useMyContext';
 import requestGetTransactions from '../services/requestGetTransactions';
+import noTransactionIcon from '../assets/imgs/no-transactions.gif';
 
 export default function Transactions() {
   const {
@@ -56,15 +57,20 @@ export default function Transactions() {
             value={createdAt}
             onChange={({ target }) => setCreatedAt(target.value)}
           />
-          <button type="submit">Buscar</button>
+          <button type="submit" disabled={isLoading}>Buscar</button>
         </form>
-        {isLoading && <h2>Loading</h2>}
       </section>
-      <section className="transaction-table-section">
-        {(transactions.length)
-          ? <TransactionTable transactions={transactions} />
-          : <h2>Nenhuma Transação</h2>}
-      </section>
+      {(transactions.length)
+        ? (
+          <section className="transaction-table-section">
+            <TransactionTable transactions={transactions} />
+          </section>
+        ) : (
+          <div className="no-transactions-container">
+            <h3>Transações não encontradas...</h3>
+            <img src={noTransactionIcon} alt="" />
+          </div>
+        )}
     </main>
   );
 }
