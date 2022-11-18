@@ -37,16 +37,21 @@ export default function Transactions() {
   };
 
   return (
-    <main>
-      <h2>Transações</h2>
-      <section>
-        <form onSubmit={handleSubmit}>
-          <select value={cashType} onChange={({ target }) => setCashType(target.value)}>
+    <main id="transactions-page">
+      <h2 className="title">Transações</h2>
+      <section className="filters-section">
+        <form className="filters-form" onSubmit={handleSubmit}>
+          <select
+            className="cash-type"
+            value={cashType}
+            onChange={({ target }) => setCashType(target.value)}
+          >
             <option value="">Todas</option>
             <option value="in">Entradas</option>
             <option value="out">Saídas</option>
           </select>
           <input
+            className="created-at"
             type="date"
             value={createdAt}
             onChange={({ target }) => setCreatedAt(target.value)}
@@ -55,7 +60,7 @@ export default function Transactions() {
         </form>
         {isLoading && <h2>Loading</h2>}
       </section>
-      <section>
+      <section className="transaction-table-section">
         {(transactions.length)
           ? <TransactionTable transactions={transactions} />
           : <h2>Nenhuma Transação</h2>}

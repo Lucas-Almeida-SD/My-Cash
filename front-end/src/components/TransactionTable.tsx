@@ -12,7 +12,7 @@ export default function TransactionTable({ transactions }: Props) {
   const { user } = useMyContext();
 
   return (
-    <table border={1}>
+    <table className="transaction-table">
       <thead>
         <tr>
           <th>Descrição</th>
