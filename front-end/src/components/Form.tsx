@@ -3,6 +3,8 @@ import useMyContext from '../hooks/useMyContext';
 import Input from './Input';
 
 interface Props {
+  className: string;
+  title: string;
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   password: string;
@@ -18,6 +20,8 @@ interface Props {
 
 export default function Form(props: Props) {
   const {
+    className,
+    title,
     username,
     setUsername,
     password,
@@ -33,7 +37,8 @@ export default function Form(props: Props) {
   const { isLoading } = useMyContext();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={className} onSubmit={handleSubmit}>
+      <h2>{title}</h2>
       <Input
         id="username"
         type="text"
