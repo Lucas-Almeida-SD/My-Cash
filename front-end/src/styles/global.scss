@@ -20,6 +20,14 @@ main {
   animation: appear 1s;
 }
 
+button:enabled {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
 .login-form, .register-form {
   display: flex;
   flex-direction: column;
