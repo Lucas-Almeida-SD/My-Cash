@@ -1,0 +1,35 @@
+#register-page {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-around;
+
+  .img-container {
+    text-align: center;
+    width: 50%;
+
+    img {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+
+  .form-container {
+    width: 50%;
+    border-right: 1px solid $gray-800;
+
+    .register-form {
+      box-shadow: -4px -4px 2px $gray-600;
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        p {
+          color: $red-500;
+        }
+      }
+    }
+  }
+}
