@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import MyAccount from './pages/MyAccount';
+import Transactions from './pages/Transactions';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path={routes.login} element={<Login />} />
         <Route path={routes.register} element={<Register />} />
         <Route path={routes.myAccount} element={<MyAccount />} />
+        <Route path={routes.transactions} element={<Transactions />} />
       </Routes>
       <Toaster />
     </div>
