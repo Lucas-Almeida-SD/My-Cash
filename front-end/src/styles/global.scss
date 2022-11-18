@@ -5,6 +5,7 @@
 @import './Login.scss';
 @import './Register.scss';
 @import './MyAccount.scss';
+@import './Transactions.scss';
 
 * {
   margin: 0;
@@ -25,8 +26,16 @@ main {
   animation: appear 1s;
 }
 
+button {
+  outline: none;
+  border: 1px solid $purple-500;
+  transition: 1s;
+}
+
 button:enabled {
   cursor: pointer;
+  background-color: $purple-500;
+  border-color: transparent;
 }
 
 button:disabled {
@@ -76,17 +85,8 @@ button:disabled {
 .form-btn {
   width: 100%;
   padding: 4px;
-  outline: none;
-  border-width: 1px;
-  border-color: $purple-500;
   border-radius: 4px;
   font-size: 18px;
-  transition: 1s;
-
-  &:enabled {
-    background-color: $purple-500;
-    border-color: transparent;
-  }
 }
 
 .login-form, .register-form {
