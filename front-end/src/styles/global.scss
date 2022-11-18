@@ -18,7 +18,10 @@ h1, h2, h3, h4, h5, h6, p, span {
 
 main {
   min-height: 100vh;
-  padding-top: $page-header-height;
+  padding-top: $page-header-height + 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
   animation: appear 1s;
 }
 
