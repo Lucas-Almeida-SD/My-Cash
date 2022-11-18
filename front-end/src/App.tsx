@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MyAccount from './pages/MyAccount';
 import Transactions from './pages/Transactions';
+import './styles/global.scss';
 
 function App() {
   return (
