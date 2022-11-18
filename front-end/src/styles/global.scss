@@ -2,6 +2,7 @@
 @import './Header.scss';
 @import './Home.scss';
 @import './Login.scss';
+@import './Register.scss';
 
 * {
   margin: 0;
@@ -29,7 +30,6 @@ main {
   padding: 20px;
   margin: auto;
   border-radius: 8px;
-  box-shadow: 4px 4px 2px $gray-600;
 
   label {
     width: 100%;
