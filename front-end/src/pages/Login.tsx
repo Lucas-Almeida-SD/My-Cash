@@ -46,19 +46,24 @@ export default function Login() {
   };
 
   return (
-    <main>
-      <div>
+    <main id="login-page">
+      <div className="img-container">
         <img src={loginImg} alt="Usuário fazendo login" />
       </div>
-      <Form
-        username={username}
-        setUsername={setUsername}
-        password={password}
-        setPassword={setPassword}
-        handleSubmit={handleSubmit}
-        submitBtnText="Entrar"
-        isValidForm={(username !== '' && password !== '')}
-      />
+      <div className="form-container">
+        <Form
+          className="login-form"
+          title="Login"
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+          handleSubmit={handleSubmit}
+          submitBtnText="Entrar"
+          isValidForm={(username !== '' && password !== '')}
+        />
+
+      </div>
     </main>
   );
 }
