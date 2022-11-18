@@ -16,5 +16,9 @@
   .form-container {
     width: 50%;
     border-left: 1px solid $gray-800;
+
+    .login-form {
+      box-shadow: 4px 4px 2px $gray-600;
+    }
   }
 }
