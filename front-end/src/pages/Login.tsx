@@ -60,7 +60,7 @@ export default function Login() {
           setPassword={setPassword}
           handleSubmit={handleSubmit}
           submitBtnText="Entrar"
-          isValidForm={(username !== '' && password !== '')}
+          isValidForm={!!((username && password))}
         />
 
       </div>
