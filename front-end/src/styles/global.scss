@@ -17,6 +17,7 @@ h1, h2, h3, h4, h5, h6, p, span {
 main {
   min-height: 100vh;
   padding-top: 68px;
+  animation: appear 1s;
 }
 
 .login-form, .register-form {
@@ -63,5 +64,14 @@ main {
       background-color: $purple-500;
       border-color: transparent;
     }
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
