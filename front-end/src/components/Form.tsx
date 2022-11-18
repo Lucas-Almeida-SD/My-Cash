@@ -1,6 +1,7 @@
 import React from 'react';
 import useMyContext from '../hooks/useMyContext';
 import Input from './Input';
+import usernameIcon from '../assets/imgs/username.png';
 
 interface Props {
   className: string;
@@ -46,6 +47,7 @@ export default function Form(props: Props) {
         setValue={setUsername}
         isValidInput={isValidUsername}
         inputErrorMessage={inputUsernameErrorMessage}
+        icon={usernameIcon}
       />
       <Input
         id="password"
