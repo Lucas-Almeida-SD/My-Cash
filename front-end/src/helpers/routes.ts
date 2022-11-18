@@ -3,4 +3,5 @@ export default {
   login: '/login',
   register: '/cadastro',
   myAccount: '/minha-conta',
+  transactions: '/transacoes',
 };
