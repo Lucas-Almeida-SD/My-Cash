@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { ErrorMessage } from '../@types/ErrorMessage';
 import { User } from '../@types/User';
+import Input from '../components/Input';
 import errorNotify from '../helpers/errorNotify';
+import formatToBrazilianCurrency from '../helpers/formatToBrazilianCurrency';
 import successNotify from '../helpers/successNotify';
 import useMyContext from '../hooks/useMyContext';
 import requestCreateTransanction from '../services/requestCreateTransaction';
 import requestGetUser from '../services/requestGetUser';
+import usernameIcon from '../assets/imgs/username.png';
+import brazilianCurrencyIcon from '../assets/imgs/brazilian-currency.png';
 
 export default function MyAccount() {
   const {
@@ -54,25 +58,35 @@ export default function MyAccount() {
   };
 
   return (
-    <main>
-      <section>
-        <h2>Minha conta</h2>
-        <p>{user.account.balance}</p>
+    <main id="my-account-page">
+      <section className="my-account">
+        <h2 className="title">Minha conta</h2>
+        <p>{formatToBrazilianCurrency(user.account.balance)}</p>
       </section>
-      <section>
-        <h2>Pix</h2>
-        <form onSubmit={handleSubmit}>
-          <input
+      <section className="new-transaction">
+        <form className="new-transaction-form" onSubmit={handleSubmit}>
+          <h2 className="title">Pix</h2>
+          <Input
+            id="transaction-value"
             type="text"
             value={transactionValue}
-            onChange={({ target }) => setTransactionValue(target.value)}
+            setValue={setTransactionValue}
+            icon={brazilianCurrencyIcon}
           />
-          <input
+          <Input
+            id="cash-in-username"
             type="text"
             value={cashInUsername}
-            onChange={({ target }) => setCashInUsername(target.value)}
+            setValue={setCashInUsername}
+            icon={usernameIcon}
           />
-          <button type="submit">Enviar</button>
+          <button
+            className="form-btn"
+            type="submit"
+            disabled={!transactionValue || !cashInUsername}
+          >
+            Enviar
+          </button>
         </form>
       </section>
     </main>
