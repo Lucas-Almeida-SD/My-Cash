@@ -21,11 +21,11 @@
     .register-form {
       box-shadow: -4px -4px 2px $gray-600;
 
-      label {
+      .input-container {
         display: flex;
         flex-direction: column;
         gap: 4px;
-
+        
         p {
           color: $red-500;
         }
