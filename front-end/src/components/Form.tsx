@@ -39,7 +39,7 @@ export default function Form(props: Props) {
 
   return (
     <form className={className} onSubmit={handleSubmit}>
-      <h2>{title}</h2>
+      <h2 className="title">{title}</h2>
       <Input
         id="username"
         type="text"
