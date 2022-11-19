@@ -52,6 +52,8 @@ export default function MyAccount() {
     try {
       await executeRequestCreateTransanction();
       await executeRequestGetUser();
+      setTransactionValue('');
+      setCashInUsername('');
     } catch (err) {
       errorNotify((err as Error).message);
     } finally {
