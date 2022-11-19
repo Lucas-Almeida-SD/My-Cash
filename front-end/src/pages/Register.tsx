@@ -32,14 +32,14 @@ export default function Register() {
     const responseCreateUser = await requestCreateUser(username, password);
     const errorMessage = responseCreateUser as ErrorMessage;
 
+    setIsLoading(false);
+
     if (errorMessage.message) {
       errorNotify(errorMessage.message);
     } else {
       successNotify('Usuário registrado com sucesso');
       navigate(routes.login);
     }
-
-    setIsLoading(false);
   };
 
   return (
