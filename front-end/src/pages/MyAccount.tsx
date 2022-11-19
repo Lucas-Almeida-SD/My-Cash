@@ -88,6 +88,7 @@ export default function MyAccount() {
             value={transactionValue}
             setValue={newSetTransactionValue}
             icon={brazilianCurrencyIcon}
+            placeholder="100,00"
           />
           <Input
             id="cash-in-username"
@@ -95,6 +96,7 @@ export default function MyAccount() {
             value={cashInUsername}
             setValue={setCashInUsername}
             icon={usernameIcon}
+            placeholder="Nome de usuário"
           />
           <button
             className="form-btn"

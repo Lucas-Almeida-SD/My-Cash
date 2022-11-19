@@ -48,6 +48,7 @@ export default function Form(props: Props) {
         isValidInput={isValidUsername}
         inputErrorMessage={inputUsernameErrorMessage}
         icon={usernameIcon}
+        placeholder="Nome de usuário"
       />
       <Input
         id="password"
@@ -56,6 +57,7 @@ export default function Form(props: Props) {
         setValue={setPassword}
         isValidInput={isValidPassword}
         inputErrorMessage={inputPasswordErrorMessage}
+        placeholder="Senha"
       />
       <button
         className="form-btn"

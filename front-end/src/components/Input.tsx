@@ -10,6 +10,7 @@ interface InputProps {
   isValidInput?: boolean
   inputErrorMessage?: string;
   icon?: string;
+  placeholder?: string;
 }
 
 export default function Input({
@@ -20,6 +21,7 @@ export default function Input({
   isValidInput,
   inputErrorMessage,
   icon,
+  placeholder,
 }: InputProps) {
   const [isError, setIsError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -47,6 +49,7 @@ export default function Input({
           value={value}
           onChange={({ target }) => setValue(target.value)}
           onBlur={() => setIsError(!isValidInput)}
+          placeholder={placeholder}
         />
         {(icon || type === 'password') && (
           <div className="icon-container">
@@ -63,4 +66,5 @@ Input.defaultProps = {
   isValidInput: true,
   inputErrorMessage: '',
   icon: '',
+  placeholder: '',
 };
