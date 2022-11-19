@@ -10,6 +10,7 @@ import requestCreateTransanction from '../services/requestCreateTransaction';
 import requestGetUser from '../services/requestGetUser';
 import usernameIcon from '../assets/imgs/username.png';
 import brazilianCurrencyIcon from '../assets/imgs/brazilian-currency.png';
+import { transactionValueValidate } from '../validations/formValidations';
 
 export default function MyAccount() {
   const {
@@ -18,6 +19,7 @@ export default function MyAccount() {
 
   const [transactionValue, setTransactionValue] = useState('');
   const [cashInUsername, setCashInUsername] = useState('');
+  const { account: { balance } } = user;
 
   const executeRequestCreateTransanction = async () => {
     const responseCreateTransaction = await requestCreateTransanction(
@@ -30,7 +32,7 @@ export default function MyAccount() {
 
     if (errorMessage.message) throw new Error(errorMessage.message);
 
-    successNotify('Pix recalizao com sucesso');
+    successNotify('Pix realizado com sucesso');
   };
 
   const executeRequestGetUser = async () => {
@@ -57,20 +59,32 @@ export default function MyAccount() {
     }
   };
 
+  const newSetTransactionValue: React.Dispatch<React.SetStateAction<string>> = (
+    value: React.SetStateAction<string>,
+  ) => {
+    const stringValue = String(value);
+
+    if (transactionValueValidate(stringValue)) {
+      const numberValue = Number(value);
+
+      setTransactionValue((balance - numberValue < 0) ? String(balance) : stringValue);
+    }
+  };
+
   return (
     <main id="my-account-page">
       <section className="my-account">
         <h2 className="title">Minha conta</h2>
-        <p>{formatToBrazilianCurrency(user.account.balance)}</p>
+        <p>{formatToBrazilianCurrency(balance)}</p>
       </section>
       <section className="new-transaction">
         <form className="new-transaction-form" onSubmit={handleSubmit}>
           <h2 className="title">Pix</h2>
           <Input
             id="transaction-value"
-            type="text"
+            type="number"
             value={transactionValue}
-            setValue={setTransactionValue}
+            setValue={newSetTransactionValue}
             icon={brazilianCurrencyIcon}
           />
           <Input
@@ -83,7 +97,7 @@ export default function MyAccount() {
           <button
             className="form-btn"
             type="submit"
-            disabled={!transactionValue || !cashInUsername}
+            disabled={!transactionValue || !cashInUsername || balance === 0}
           >
             Enviar
           </button>
