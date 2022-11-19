@@ -6,6 +6,7 @@
 @import './Register.scss';
 @import './MyAccount.scss';
 @import './Transactions.scss';
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&family=Acme&family=Caveat&family=Fredoka+One&family=Jost:wght@300&family=Luckiest+Guy&family=Secular+One&family=Ubuntu:wght@300&display=swap');
 
 * {
   margin: 0;
@@ -30,6 +31,9 @@ button {
   outline: none;
   border: 1px solid $purple-500;
   transition: 1s;
+  font-family: 'Acme', sans-serif;
+  font-size: 18px;
+  height: 32px;
 }
 
 button:enabled {
@@ -40,6 +44,11 @@ button:enabled {
 
 button:disabled {
   cursor: not-allowed;
+}
+
+input, select {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
 }
 
 .input-container {
@@ -86,7 +95,6 @@ button:disabled {
   width: 100%;
   padding: 4px;
   border-radius: 4px;
-  font-size: 18px;
 }
 
 .login-form, .register-form {
@@ -100,6 +108,12 @@ button:disabled {
   padding: 20px;
   margin: auto;
   border-radius: 8px;
+}
+
+.title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 100;
+  font-size: 28px;
 }
 
 @keyframes appear {
