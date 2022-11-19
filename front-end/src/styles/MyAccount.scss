@@ -1,5 +1,6 @@
 #my-account-page {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 32px;
@@ -9,10 +10,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 18px 32px;
+    padding: 20px 32px;
     width: 40%;
     max-width: 380px;
-    height: 200px;
+    min-width: 320px;
     border-radius: 8px;
     box-shadow: 0 0 4px black, 0 4px 4px black;
   }
@@ -28,7 +29,6 @@
   }
 
   .new-transaction {
-
     .new-transaction-form {
       width: 100%;
       display: flex;
