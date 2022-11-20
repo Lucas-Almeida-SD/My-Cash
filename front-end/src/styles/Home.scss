@@ -1,0 +1,46 @@
+#home-page {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .info-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .content-container {
+      padding-bottom: 30px;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 80px;
+
+      h2 {
+        font-size: 38px;
+        font-family: 'Luckiest Guy', cursive;
+        font-weight: 100;
+      }
+
+      p {
+        font-size: 32px;
+        font-family: 'Jost', sans-serif;
+        font-weight: 900;
+      }
+    }
+
+    .img-container {
+      width: 50%;
+      text-align: center;
+      overflow: hidden;
+      
+      img {
+        width: 100%;
+        max-width: 500px;
+        min-width: 200px;
+      }
+    }
+  }
+}

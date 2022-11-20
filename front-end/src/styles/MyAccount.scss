@@ -1,0 +1,41 @@
+#my-account-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+
+  .my-account, .new-transaction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 32px;
+    width: 40%;
+    max-width: 380px;
+    min-width: 320px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px black, 0 4px 4px black;
+  }
+
+  .my-account {
+    gap: 32px;
+
+    p {
+      font-size: 48px;
+      font-family: 'Secular One', sans-serif;
+      font-weight: 900;
+    }
+  }
+
+  .new-transaction {
+    .new-transaction-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+  }
+}

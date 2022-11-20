@@ -1,0 +1,40 @@
+#loading {
+  position: fixed;
+  z-index: 9999;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  padding: 20px;
+  background-color: rgb(0, 0, 0, 0.8);
+
+  .loading-circle-1, .loading-circle-2 {
+    position: absolute;
+    border-radius: 50%;
+    animation: pulse 0.5s infinite
+  }
+
+  .loading-circle-1 {
+    background-color: $purple-500;
+    z-index: 2;
+    animation-direction: alternate;
+  }
+
+  .loading-circle-2 {
+    background-color: $purple-700;
+    z-index: 1;
+    animation-direction: alternate-reverse;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    width: 10px;
+    height: 10px;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+  }
+}
