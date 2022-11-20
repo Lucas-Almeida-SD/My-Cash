@@ -17,7 +17,7 @@ transactionsRouter.post(
   transactionController.create,
 );
 
-transactionsRouter.get(
+transactionsRouter.post(
   '/transactions/me',
   authentication,
   transactionController.getMyTransactions,
