@@ -20,6 +20,11 @@ export default class TransactionValidation {
 
       throwMyError(StatusCodes.BAD_REQUEST, errorMessage);
     }
+
+    const splitValue = String(newTransaction.value).split('.');
+    if (splitValue[1] && splitValue[1].length > 2) {
+      throwMyError(StatusCodes.BAD_REQUEST, 'Valor não perrmitido');
+    }
   }
 
   static compareUsersValidate(
@@ -42,7 +47,7 @@ export default class TransactionValidation {
 
   static getTransactionsFiltersValidate(filters: ITransactionFilterOptions) {
     const filtersSchema = z.object({
-      createdAt: z.string().regex(/^\d{4}\/\d{2}\/\d{2}$/),
+      createdAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
       cashType: z.enum(['in', 'out']).optional(),
     });
 
