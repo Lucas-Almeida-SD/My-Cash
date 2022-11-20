@@ -21,7 +21,7 @@ export default class UserService implements IUserService {
 
     const user = await this.model.login(userLogin);
 
-    if (!user) throwMyError(StatusCodes.NOT_FOUND, 'Usuário não encontrado');
+    UserValidation.notFoundUserValidate(user)
 
     UserValidation.passwordValidate((userLogin).password, (user as IUser).password);
 
