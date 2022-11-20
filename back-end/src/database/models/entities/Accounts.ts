@@ -1,4 +1,4 @@
-import { Model, INTEGER } from 'sequelize';
+import { Model, INTEGER, FLOAT } from 'sequelize';
 import db from '../..';
 
 class Accounts extends Model {
@@ -17,7 +17,7 @@ Accounts.init(
       unique: true,
     },
     balance: {
-      type: INTEGER,
+      type: FLOAT,
       allowNull: false,
       defaultValue: 100,
     },
