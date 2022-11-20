@@ -34,7 +34,7 @@ export default class UserService implements IUserService {
     UserValidation.createValidate(newUser);
 
     const user = await this.model.login(newUser);
-    if (user) throwMyError(StatusCodes.CONFLICT, 'Usuário já existe');
+    UserValidation.userAlreadyExistsValidate(user);
 
     const t = await sequelize.transaction();
 
