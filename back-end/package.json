@@ -7,7 +7,8 @@
     "start": "npx tsc && node ./dist",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "db:reset": "npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "dev": "ts-node-dev ./src/api/server.ts"
+    "dev": "ts-node-dev ./src/api/server.ts",
+    "test": "NODE_ENV=test ts-mocha -p ./tsconfig.json src/tests/integration/**/*.spec.ts --timeout 600000 --exit"
   },
   "keywords": [],
   "author": "",
