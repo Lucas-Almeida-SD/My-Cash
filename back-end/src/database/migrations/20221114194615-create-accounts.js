@@ -10,7 +10,7 @@ module.exports = {
         unique: true,
       },
       balance: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false,
       },
     });
