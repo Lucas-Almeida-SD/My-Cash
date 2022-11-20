@@ -45,4 +45,8 @@ export default class UserValidation {
   static notFoundUserValidate(user: object | null) {
     if (!user) throwMyError(StatusCodes.NOT_FOUND, 'Usuário não encontrado');
   }
+
+  static userAlreadyExistsValidate(user: object | null) {
+    if (user) throwMyError(StatusCodes.CONFLICT, 'Usuário já existe');
+  }
 }
