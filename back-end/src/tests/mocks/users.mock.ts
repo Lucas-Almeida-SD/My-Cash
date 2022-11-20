@@ -60,3 +60,14 @@ export const userAlreadyExistsUsersCreateRequest = {
   username: 'john_doe',
   password: 'Password1'
 }
+
+// Get user by username
+export const successUsersGetByUsernameRequest = {
+  id: 1,
+  username: 'john_doe',
+  accountId: 1,
+  account: {
+    id: 1,
+    balance: 80,
+ }
+}
