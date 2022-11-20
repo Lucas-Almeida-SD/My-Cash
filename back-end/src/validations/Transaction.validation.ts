@@ -21,8 +21,8 @@ export default class TransactionValidation {
       throwMyError(StatusCodes.BAD_REQUEST, errorMessage);
     }
 
-    const splitValue = String(newTransaction.value).split('.');
-    if (splitValue[1] && splitValue[1].length > 2) {
+    const regex = /^\d+(\.\d{1,2})?$/;
+    if (!regex.test(String(newTransaction.value))) {
       throwMyError(StatusCodes.BAD_REQUEST, 'Valor não perrmitido');
     }
   }
