@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { IUserController, IUserWithoutPassword } from '../interfaces/IUser.interface';
-import UserService from '../services/User.service';
+import { IUserController, IUserService, IUserWithoutPassword } from '../interfaces/IUser.interface';
 
 export default class UserController implements IUserController {
-  constructor(private service: UserService) {}
+  constructor(private service: IUserService) {}
 
   public login = async (req: Request, res: Response): Promise<void> => {
     const token = await this.service.login(req.body);
