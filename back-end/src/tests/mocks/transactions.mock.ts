@@ -50,3 +50,82 @@ export const successTransactionsCreateRequest = {
 export const newCashOutUserBalance = 110
 
 export const newCashInUserBalance = 90
+
+// Get my transactions
+export const successWithoutFiltersGetMyTransactionsRequest = [
+  {
+    id: 3,
+    debitedAccountId: 1,
+    creditedAccountId: 2,
+    value: 15.65,
+    createdAt: '2022-10-12',
+  },
+  {
+    id: 1,
+    debitedAccountId: 1,
+    creditedAccountId: 2,
+    value: 24.35,
+    createdAt: '2022-10-10',
+  },
+  {
+    id: 2,
+    debitedAccountId: 2,
+    creditedAccountId: 1,
+    value: 20,
+    createdAt: '2022-10-10',
+  },
+]
+
+export const successCashOutFilterGetMyTransactionsRequest = [
+  {
+    id: 3,
+    debitedAccountId: 1,
+    creditedAccountId: 2,
+    value: 15.65,
+    createdAt: '2022-10-12',
+  },
+  {
+    id: 1,
+    debitedAccountId: 1,
+    creditedAccountId: 2,
+    value: 24.35,
+    createdAt: '2022-10-10',
+  },
+]
+
+export const successCashInFilterGetMyTransactionsRequest = [
+  {
+    id: 2,
+    debitedAccountId: 2,
+    creditedAccountId: 1,
+    value: 20,
+    createdAt: '2022-10-10',
+  },
+]
+
+export const successCreatedAtFilterGetMyTransactionsRequest = [
+  {
+    id: 1,
+    debitedAccountId: 1,
+    creditedAccountId: 2,
+    value: 24.35,
+    createdAt: '2022-10-10',
+  },
+  {
+    id: 2,
+    debitedAccountId: 2,
+    creditedAccountId: 1,
+    value: 20,
+    createdAt: '2022-10-10',
+  },
+]
+
+export const successAllFiltersGetMyTransactionsRequest = [
+  {
+    id: 1,
+    debitedAccountId: 1,
+    creditedAccountId: 2,
+    value: 24.35,
+    createdAt: '2022-10-10',
+  },
+]
