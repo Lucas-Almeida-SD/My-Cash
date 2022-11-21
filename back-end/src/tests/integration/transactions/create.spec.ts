@@ -47,6 +47,41 @@ describe('Testes da rota "POST /transactions"', () => {
   });
 
   describe('Casos de FALHA', () => {
+    describe('Ao realizar uma transação sem o "token":', () => {
+      before(async() => {
+        response = await chai
+        .request(api)
+        .post('/transactions')
+      });
+
+      it('Retorna status code "401"', () => {
+        expect(response).to.have.status(401);
+      });
+
+      it('Retorna mensagem de erro no corpo da resposta', () => {
+        errorMessage = { message: 'Token não encontrado' };
+        expect(response.body).to.be.eqls(errorMessage);
+      });
+    });
+    
+    describe('Ao realizar uma transação com o "token" inválido:', () => {
+      before(async() => {
+        response = await chai
+        .request(api)
+        .post('/transactions')
+        .set({ Authorization: 'invalid-token' });
+      });
+
+      it('Retorna status code "401"', () => {
+        expect(response).to.have.status(401);
+      });
+
+      it('Retorna mensagem de erro no corpo da resposta', () => {
+        errorMessage = { message: 'Token inválido ou expirado' };
+        expect(response.body).to.be.eqls(errorMessage);
+      });
+    });
+
     describe('Ao tentar realizar uma transação sem o atributo "value":', () => {
       before(async () => {
         response = await chai

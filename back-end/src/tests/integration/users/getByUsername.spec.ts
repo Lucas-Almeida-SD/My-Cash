@@ -44,6 +44,41 @@ describe('Testes da rota "GET /users"', () => {
   });
 
   describe('Casos de FALHA', () => {
+    describe('Ao realizar uma transação sem o "token":', () => {
+      before(async() => {
+        response = await chai
+        .request(api)
+        .get('/users/me')
+      });
+
+      it('Retorna status code "401"', () => {
+        expect(response).to.have.status(401);
+      });
+
+      it('Retorna mensagem de erro no corpo da resposta', () => {
+        errorMessage = { message: 'Token não encontrado' };
+        expect(response.body).to.be.eqls(errorMessage);
+      });
+    });
+    
+    describe('Ao realizar uma transação com o "token" inválido:', () => {
+      before(async() => {
+        response = await chai
+        .request(api)
+        .get('/users/me')
+        .set({ Authorization: 'invalid-token' });
+      });
+
+      it('Retorna status code "401"', () => {
+        expect(response).to.have.status(401);
+      });
+
+      it('Retorna mensagem de erro no corpo da resposta', () => {
+        errorMessage = { message: 'Token inválido ou expirado' };
+        expect(response.body).to.be.eqls(errorMessage);
+      });
+    });
+  
     describe('Ao realizar a requisição de leitura dos dados do usuário com token contendo infomações de usuário inexistente:', () => {
       const token = generateToken({
         id: 9999,
