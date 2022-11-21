@@ -1,10 +1,9 @@
 import { StatusCodes } from 'http-status-codes';
-import AccountModel from '../database/models/Account.model';
 import throwMyError from '../helpers/throwMyError';
-import { IAccount, IAccountService } from '../interfaces/IAccount.interface';
+import { IAccount, IAccountModel, IAccountService } from '../interfaces/IAccount.interface';
 
 export default class AccountService implements IAccountService {
-  constructor(private service: AccountModel) {}
+  constructor(private service: IAccountModel) {}
 
   public async getById(id: number): Promise<IAccount> {
     const account = await this.service.getById(id);

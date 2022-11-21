@@ -1,19 +1,19 @@
 import { StatusCodes } from 'http-status-codes';
-import UserModel from '../database/models/User.model';
 import generateToken from '../helpers/generateToken';
 import throwMyError from '../helpers/throwMyError';
 import {
-  IUser, IUserRelationWithAccount, IUserRequest, IUserService, IUserWithoutPassword,
+  IUser, IUserModel, IUserRelationWithAccount, IUserRequest, IUserService, IUserWithoutPassword,
 } from '../interfaces/IUser.interface';
 import UserValidation from '../validations/User.validation';
 import sequelize from '../database';
 import AccountModel from '../database/models/Account.model';
 import generateHashPassword from '../helpers/generateHashPassword';
+import { IAccountModel } from '../interfaces/IAccount.interface';
 
 export default class UserService implements IUserService {
   constructor(
-    private model: UserModel,
-    private accountModel: AccountModel = new AccountModel(),
+    private model: IUserModel,
+    private accountModel: IAccountModel = new AccountModel(),
   ) {}
 
   public async login(userLogin: IUserRequest): Promise<string> {
@@ -21,7 +21,7 @@ export default class UserService implements IUserService {
 
     const user = await this.model.login(userLogin);
 
-    UserValidation.notFoundUserValidate(user)
+    UserValidation.notFoundUserValidate(user);
 
     UserValidation.passwordValidate((userLogin).password, (user as IUser).password);
 
