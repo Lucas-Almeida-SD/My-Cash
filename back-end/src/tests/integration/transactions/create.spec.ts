@@ -5,8 +5,8 @@ import { Response } from 'superagent';
 import api from '../../../api/api';
 import { IUserRelationWithAccount } from '../../../interfaces/IUser.interface';
 import { 
-  cashOutUserCredentials,
-  cashInUserCredentials,
+  firstUserCredentials,
+  secondUserCredentialsa,
   nonExistentCashInUsernameTransactionsCreateRequest,
   nonExistentValueTransactionsCreateRequest,
   transactionForYourselfTransactionsCreateRequest,
@@ -35,12 +35,12 @@ describe('Testes da rota "POST /transactions"', () => {
     const cashOutUserLoginResponse: Response = await chai
       .request(api)
       .post('/users/login')
-      .send(cashOutUserCredentials);
+      .send(secondUserCredentialsa);
     
     const cashInUserLoginResponse: Response = await chai
       .request(api)
       .post('/users/login')
-      .send(cashInUserCredentials);
+      .send(firstUserCredentials);
     
     cashOutUserToken = cashOutUserLoginResponse.body.token
     cashInUserToken = cashInUserLoginResponse.body.token 
