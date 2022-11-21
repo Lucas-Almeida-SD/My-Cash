@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { IAccountController } from '../interfaces/IAccount.interface';
-import AccountService from '../services/Account.service';
+import { IAccountController, IAccountService } from '../interfaces/IAccount.interface';
 
 export default class AccountController implements IAccountController {
-  constructor(private service: AccountService) {}
+  constructor(private service: IAccountService) {}
 
   public getById = async (req: Request, res: Response): Promise<void> => {
     const account = await this.service.getById(req.user?.accountId as number);
