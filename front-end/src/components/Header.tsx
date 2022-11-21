@@ -24,18 +24,21 @@ export default function Header() {
           ? (
             <>
               <Link
+                data-testid="home-page-link"
                 to={routes.home}
                 className={classnames({ selected: pathname === routes.home })}
               >
                 Home
               </Link>
               <Link
+                data-testid="login-page-link"
                 to={routes.login}
                 className={classnames({ selected: pathname === routes.login })}
               >
                 Login
               </Link>
               <Link
+                data-testid="register-page-link"
                 to={routes.register}
                 className={classnames({ selected: pathname === routes.register })}
               >
@@ -46,12 +49,14 @@ export default function Header() {
           : (
             <>
               <Link
+                data-testid="my-account-page-link"
                 to={routes.myAccount}
                 className={classnames({ selected: pathname === routes.myAccount })}
               >
                 Minha conta
               </Link>
               <Link
+                data-testid="transactions-page-link"
                 to={routes.transactions}
                 className={classnames({ selected: pathname === routes.transactions })}
               >
