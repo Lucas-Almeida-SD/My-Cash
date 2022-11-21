@@ -1,0 +1,53 @@
+version: '3.9'
+
+services:
+
+  frontend:
+    container_name: frontend_my_cash
+    build: ./front-end
+    ports:
+      - 3000:3000
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      - REACT_APP_BASE_URL=http://localhost:3001
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
+  
+  backend:
+    container_name: backend_my_cash
+    build: ./back-end
+    ports:
+      - 3001:3001
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - PORT=3001
+      - POSTGRE_SQL_USERNAME=postgres
+      - POSTGRE_SQL_PASSWORD=password
+      - POSTGRE_SQL_HOST=database_my_cash
+      - POSTGRE_SQL_DB=my_cash
+      - POSTGRE_SQL_PORT=5432
+      - JWT_SECRET=mysupersecret'
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"]
+      timeout: 10s
+      retries: 5
+
+  db:
+    image: postgres:15.1-alpine
+    container_name: database_my_cash
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      
+    restart: 'always'
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      timeout: 10s
+      retries: 5
