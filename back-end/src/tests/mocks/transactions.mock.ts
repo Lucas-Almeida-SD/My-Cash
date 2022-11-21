@@ -1,11 +1,11 @@
-export const cashOutUserCredentials = {  // user has a balance of R$120,00
-  username: 'joao_santos',
-  password: '123Senha'
-};
-
-export const cashInUserCredentials = { // user has a balance of R$80,00
+export const firstUserCredentials = { // user has a balance of R$80,00
   username: 'john_doe',
   password: 'Senha123'
+};
+
+export const secondUserCredentialsa = {  // user has a balance of R$120,00
+  username: 'joao_santos',
+  password: '123Senha'
 };
 
 // Create new transaction
