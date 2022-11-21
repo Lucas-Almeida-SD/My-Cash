@@ -24,13 +24,6 @@
     ],
     "root": true,
     "rules": {
-        "max-len": ["error", 100],
-        "@typescript-eslint/no-unused-vars": [
-            "warn",
-            { 
-                "argsIgnorePattern": "^_",
-                "varsIgnorePattern": "^_"
-            }
-        ]
+        "max-len": ["error", 100]
     }
 }
