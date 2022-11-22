@@ -4,7 +4,7 @@
   "description": "Nesse projeto foi desenvolvida uma  aplicação fullstack, baseada em um sistema de contas financeiras.",
   "main": "index.js",
   "scripts": {
-    "start:backend": "cd ./back-end && npm install && npm db:reset && npm start",
+    "start:backend": "cd ./back-end && npm install && npm run db:reset && npm start",
     "start:frontend": "cd ./front-end && npm install && npm start"
   },
   "repository": {
