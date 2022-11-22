@@ -57,7 +57,7 @@ export default function Input({
           </div>
         )}
       </label>
-      {(isError) && <p>{inputErrorMessage}</p>}
+      {(isError) && <p className="error-message">{inputErrorMessage}</p>}
     </div>
   );
 }
